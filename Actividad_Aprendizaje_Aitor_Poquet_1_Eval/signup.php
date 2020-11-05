@@ -105,7 +105,7 @@ if(isset($_POST)){
                  send_Mail($email, $name, $from, $subject, $body);
             }
                         
-            //Gestion de errores de los campos del form
+            //Gestion de errores de los campos del formulario
         }catch(PDOException $e){
             if (isset($email)) {
                 $_SESSION['errors']['global'] = 'El email ya existe. Prueba con otro';
