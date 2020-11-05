@@ -8,10 +8,14 @@ if(isset($_POST)){
 
    
     //seteamos las variables usando isset() como un "if()" para validarlas
-    $name = isset($_POST['name']) ? mysqli_real_escape_string($db, $_POST['name']) : false;
+    //$name = isset($_POST['name']) ? mysqli_real_escape_string($db, $_POST['name']) : false;
     //trim() de email para que se guarde sin espacios por si acaso
-    $email = isset($_POST['email']) ? mysqli_real_escape_string($db, trim($_POST['email'])) : false;
-    $password = isset($_POST['password']) ? mysqli_real_escape_string($db, $_POST['password']) : false;
+    //$email = isset($_POST['email']) ? mysqli_real_escape_string($db, trim($_POST['email'])) : false;
+    //$password = isset($_POST['password']) ? mysqli_real_escape_string($db, $_POST['password']) : false;
+
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
 
     //variables para PHPMailer
    $from = 'aitorpoquetginestar@gmail.com';
@@ -62,26 +66,62 @@ if(isset($_POST)){
        //le daremos un cost de 4 para cifrarla cuatro veces
        $bcrypted_password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
 
-       //finalmente insertamos en usuario en la BD
-       $sql_insert_user = "INSERT INTO users VALUES(null, '$name','$bcrypted_password', '$email', '');";
-        $query_insert_user = mysqli_query($db, $sql_insert_user);
-  
-       
-       if($query_insert_user){ //si se ha insertado al usuario
-           $_SESSION['completed'] = 'El registro se ha completado satisfactoriamente';
 
-           send_Mail($email, $name, $from, $subject, $body);
-       }elseif (isset($email)) {//si el email ya existe en la BD
-           $_SESSION['errors']['global'] = 'El email ya existe. Prueba con otro';
-       }else{ //ante cualquier otro error
-           $_SESSION['errors']['global'] = 'Error al guardar los datos';
-       }
+       /***********   VERSIÓN DE PREPARED STATEMENT ******************/ 
+        // $sql_insert_user = "INSERT INTO users VALUES(null, ?,?,?,'')";
+
+        // if($stmt = $db -> prepare($sql_insert_user)){
+        //     //asignamos variables a los blinds (?) del prepared statements
+        //     $stmt -> bind_param('sss', $name, $bcrypted_password, $email);
+
+        //     //seteamos las variables con los valores recibios por el form del HTML
+        //     $name = $_REQUEST['name'];
+        //     $password = $_REQUEST['password'];
+        //     $email = $_REQUEST['email'];
+
+        //     //ejecutamos la sentencia
+        //     if($stmt -> execute()){
+        //         $_SESSION['completed'] = 'El registro se ha completado satisfactoriamente';
+        //         send_Mail($email, $name, $from, $subject, $body);
+        //     }elseif (isset($email)) {
+        //         $_SESSION['errors']['global'] = 'El email ya existe. Prueba con otro';
+        //     }else{
+        //         $_SESSION['errors']['global'] = 'Error al guardar los datos';
+        //     }
+        // } 
+
+        //Versión con PDO
+        try{
+            $sql_insert_user = "INSERT INTO users (u_name, u_password, u_email)VALUES(:name, :password, :email)";
+            $stmt = $db->prepare($sql_insert_user);
+
+            $stmt ->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt ->bindParam(':password',$bcrypted_password, PDO::PARAM_STR);
+            $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
+
+            //ejecutamos la sentencias
+            if($stmt -> execute()){
+                $_SESSION['completed'] = 'El registro se ha completado satisfactoriamente';
+                 send_Mail($email, $name, $from, $subject, $body);
+            }
+                        
+        }catch(PDOException $e){
+            if (isset($email)) {
+                $_SESSION['errors']['global'] = 'El email ya existe. Prueba con otro';
+            }else{
+                $_SESSION['errors']['global'] = 'Error al guardar los datos';
+            }
+          $e->getMessage();
+        }
        
    }else{ //cuando no exista $_POST o surja cualquier otro error
     $_SESSION['errors'] = $errors;
-    
    }
-  //var_dump($errors);
+
+//    close() para la versión de prepared statement
+//    $stmt -> close();
+//    $db -> close();
+//    var_dump($errors);
 }
 
 //redireccionamos a la home una vez se haya completado el proceso de registro
