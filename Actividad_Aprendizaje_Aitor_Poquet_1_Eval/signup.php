@@ -90,7 +90,7 @@ if(isset($_POST)){
         //     }
         // } 
 
-        //Versión con PDO
+        //Versión con PDO 
         try{
             $sql_insert_user = "INSERT INTO users (u_name, u_password, u_email)VALUES(:name, :password, :email)";
             $stmt = $db->prepare($sql_insert_user);
@@ -105,7 +105,7 @@ if(isset($_POST)){
                  send_Mail($email, $name, $from, $subject, $body);
             }
                         
-            //Gestion de errores de los campos del formulario
+            //Gestion de errores de los campos del formulario de registro
         }catch(PDOException $e){
             if (isset($email)) {
                 $_SESSION['errors']['global'] = 'El email ya existe. Prueba con otro';
