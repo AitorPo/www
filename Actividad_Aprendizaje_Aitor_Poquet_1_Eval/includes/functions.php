@@ -31,6 +31,10 @@ function deleteErrors(){
         unset($_SESSION['input_errors']);
     }
 
+    if(isset($_SESSION['error_login'])){
+        unset($_SESSION['error_login']);
+    }
+
     if(isset($_SESSION['completed'])){
         unset($_SESSION['completed']);
     }

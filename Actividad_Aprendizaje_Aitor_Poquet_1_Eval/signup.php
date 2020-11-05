@@ -65,6 +65,8 @@ if(isset($_POST)){
        //ciframos la contraseña
        //le daremos un cost de 4 para cifrarla cuatro veces
        $bcrypted_password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
+       
+      
 
 
        /***********   VERSIÓN DE PREPARED STATEMENT ******************/ 
@@ -95,12 +97,8 @@ if(isset($_POST)){
             $sql_insert_user = "INSERT INTO users (u_name, u_password, u_email)VALUES(:name, :password, :email)";
             $stmt = $db->prepare($sql_insert_user);
 
-            $stmt ->bindParam(':name', $name, PDO::PARAM_STR);
-            $stmt ->bindParam(':password',$bcrypted_password, PDO::PARAM_STR);
-            $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
-
-            //ejecutamos la sentencias
-            if($stmt -> execute()){
+            if($stmt -> execute(['name' => $name, 'password' => $bcrypted_password, 'email' => $email])){   
+            
                 $_SESSION['completed'] = 'El registro se ha completado satisfactoriamente';
                  send_Mail($email, $name, $from, $subject, $body);
             }

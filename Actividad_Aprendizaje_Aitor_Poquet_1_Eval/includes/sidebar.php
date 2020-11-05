@@ -2,8 +2,20 @@
 <?php require_once 'includes/functions.php' ;?>
 <!-- BARRA LATERAL / SIDEBAR -->
 <aside id="sidebar">
+<?php if(isset($_SESSION['user'])): ?>
+        <div id="loged_user" class="block-aside">
+            <h3>Bienvenido, <?=$_SESSION['user']['u_name'];?></h3>
+            <!-- <?php var_dump($_SESSION['user']); ?> -->
+<?php endif; ?>
+
+<?php if(!isset($_SESSION['PONER SESION AQUI'])): ?>
     <div id="login" class="block-aside">
         <h3>Identifícate</h3>
+        <?php if(isset($_SESSION['error_login'])): ?>
+                    <div class="alert alert-error">
+                        <?=$_SESSION['error_login'];?>
+                    </div>
+                <?php endif; ?>
 
         <form action="login.php" method="POST">
             <label for="email">Email</label>
@@ -55,4 +67,5 @@
         <!-- Eliminamos los mensajes de error al recargar la página o reenviar el form -->
         <?php deleteErrors(); ?>
     </div>
+    <?php endif?>
 </aside>

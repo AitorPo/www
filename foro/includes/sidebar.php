@@ -45,6 +45,7 @@
 
                     <input type="submit" value="Entrar" />
                 </form>
+                
             </div>
   
             <div id="signup" class="block-aside">
