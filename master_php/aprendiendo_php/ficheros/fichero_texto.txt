@@ -1,0 +1,1 @@
+Hola soy un fichero de texto Texto metido desde PHP. Se necesitan permisos a+ para poder acceder, leer y escribir

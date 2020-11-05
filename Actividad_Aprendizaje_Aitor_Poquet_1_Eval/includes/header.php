@@ -1,0 +1,46 @@
+<?php 
+require_once 'includes/connection.php';
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro Aitor Poquet Ginestar</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+</head>
+<body>
+<!-- HEADER -->
+    <header>
+        <!-- LOGO -->
+        <div id="logo">
+            <a href="index.php">
+                Foro Aitor Poquet Ginestar
+            </a>
+        </div>
+
+    <div class="clearfix"></div>
+
+     <!-- MENU -->
+     <nav id="menu">
+        <ul>        
+            <li>
+            <a href="index.php">Inicio</a>
+            </li>
+            <li>
+            <a href="">Crear tema</a>
+            </li>
+            <li>
+            <a href="">Crear categoría</a>
+            </li>    
+            <li>
+            <a href="">Ver categorías</a>
+            </li>   
+    </ul>
+    </nav> 
+    </header>  
+       
+
+  <!-- CONTAINER (ends at footer.php)-->
+  <div id="container">
