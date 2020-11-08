@@ -47,7 +47,7 @@ if(isset($_POST)){
 		$sql = "SELECT id, email FROM usuarios WHERE email = '$email'";
 		$isset_email = mysqli_query($db, $sql);
 		$isset_user = mysqli_fetch_assoc($isset_email);
-		
+		var_dump($isset_user);
 		if($isset_user['id'] == $usuario['id'] || empty($isset_user)){
 			// ACTULIZAR USUARIO EN LA TABLA USUARIOS DE LA BBDD
 			
@@ -57,7 +57,8 @@ if(isset($_POST)){
 				   "email = '$email' ".
 				   "WHERE id = ".$usuario['id'];
 			$guardar = mysqli_query($db, $sql);
-
+			var_dump($guardar);
+		
 
 			if($guardar){
 				$_SESSION['usuario']['nombre'] = $nombre;

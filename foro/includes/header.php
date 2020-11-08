@@ -24,7 +24,7 @@
     <nav id="nav">
         <ul>
             <li>
-                <a href=">Inicio</a>
+                <a href="index.php">Inicio</a>
             </li>
             <?php 
                 $categorias = getCategorias($db);

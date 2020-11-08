@@ -15,7 +15,7 @@ require 'includes/PHPMailer/src/SMTP.php';
 function showErrors($errors, $field){
     $alert = '';
     if(isset($errors[$field]) && !empty($field)){
-        $alert = "<div class='alerta alerta-error'>".$errors[$field].'</div>';
+        $alert = "<div class='alert alert-error'>".$errors[$field].'</div>';
     }
     return $alert;
 }
@@ -38,7 +38,19 @@ function deleteErrors(){
     if(isset($_SESSION['completed'])){
         unset($_SESSION['completed']);
     }
+
 }
+
+function getCategory($db){
+    $sql = "SELECT * FROM categories ORDER BY cate_id ASC";
+    $stmt = $db->prepare($sql);
+    $stmt -> execute();
+
+    $categories = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+    return $categories;
+}
+
 
 //funcion para enviar el email de registro de forma automática e inmediata
 function send_Mail($to, $username, $from, $subject, $body){

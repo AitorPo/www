@@ -30,26 +30,72 @@ function borrarErrores(){
     }
 }
 
+/* obtenemos un listado con todas las categorías */
+
 function getCategorias($db){
     $sql = $db->prepare("SELECT * FROM categorias ORDER BY id ASC");
     $sql-> execute();
 
     $categorias = $sql->get_result();
-
+    
     return $categorias;
 }
 
-function getUltimasEntradas($db){
-    $sql = $db->prepare("SELECT e.*, c.nombre AS 'categoria' FROM entradas e
-                        INNER JOIN categorias c
-                        ON e.categoria_id = c.id
-                        ORDER BY e.id DESC LIMIT 4;"
-    );
+/* obtenemos solo una categoría para trabajar con ella */
+function getCategoria($db, $id){
+    $sql = $db->prepare("SELECT * FROM categorias WHERE id = $id");
+    
     $sql-> execute();
+    $row = array();
+    
+    $row = $sql -> get_result();
+    $categoria = $row -> fetch_assoc();
+    
 
-    $ultimas_entradas = $sql -> get_result();
+    return $categoria;
+}
 
+function getEntradas($db, $limit = null, $categoria = null){
+    $sql = "SELECT e.*, c.nombre AS 'categoria' FROM entradas e
+                        INNER JOIN categorias c
+                        ON e.categoria_id = c.id";
+                    
+    if(!empty($categoria)){
+        $sql .= " WHERE e.categoria_id = $categoria";
+    }  
+
+    $sql .=  " ORDER BY e.id DESC";
+    
+    if(!empty($limit) && is_int($limit)){
+        $sql .= " LIMIT $limit";
+    }
+
+    $stmt = $db -> prepare($sql);   
+    $stmt-> execute();
+
+   
+    $ultimas_entradas = $stmt -> get_result();
     return $ultimas_entradas;
+}
+
+function getEntrada($db, $id){
+    $sql = $db->prepare("SELECT e.*, c.nombre AS 'categoria',
+    CONCAT (u.nombre, ' ', u.apellidos) AS 'usuario' FROM entradas e
+    INNER JOIN categorias c ON e.categoria_id = c.id 
+    INNER JOIN usuarios u ON e.usuario_id = u.id 
+    WHERE e.id = $id");
+    
+    //ejecutamos la consulta
+    $sql -> execute();
+    //array que recojerá los datos de la fila que estamos consultando
+    $row = array();
+    
+    //obtenemos un objeto sql con los elementos que conforman la fila
+    $row = $sql -> get_result();
+    //convertimos ese campo en un array asociativo para obtener su key -> value con fetch_assoc()
+    $entrada = $row -> fetch_assoc();
+    //devolvemos los datos de la consulta en forma de array asociativo
+    return $entrada;
 }
 
 function send_Mail($to, $username,$from,$subject,$body){

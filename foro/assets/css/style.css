@@ -194,6 +194,7 @@ input[type='submit'],
 .button {
     text-align: center;
 }
+
 .button-blue{
     border-color: rgb(16, 16, 133);
 }
@@ -211,7 +212,7 @@ input[type='submit'],
 .button-red{
     background: red;
     border-color: black;
- }
+}
 
 /*PRINCIPAL*/
 #principal{
@@ -228,7 +229,15 @@ input[type='submit'],
 }
 
 #principal a{
-    color: #333;
+    color: white !important;
+}
+
+#principal a:hover h2{
+    text-decoration: underline;
+}
+#principal a:visited p{
+    color: black;
+    
 }
 
 #principal h1{

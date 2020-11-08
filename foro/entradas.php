@@ -1,27 +1,31 @@
+<?php include_once 'includes/helpers.php';
+    require_once 'includes/header.php';
+    require_once 'includes/sidebar.php';
+    require_once 'includes/header.php';?>
+    
+
 <div id="principal">
-            <h1>Últimas entradas</h1>
+            <h1>Todas entradas</h1>
 
             <?php
-                $entradas = getEntradas($db, 4);
+                $entradas = getEntradas($db);
                 if(!empty($entradas)):
                     while($entrada = mysqli_fetch_assoc($entradas)):
             ?>            
             <article class="posts">
                 <a href="entrada.php?id=<?=$entrada['id']?>">
-                    <h2><?=$entrada['titulo']?></h2>  </a>
+                    <h2><?=$entrada['titulo']?></h2>
                     <span class="date"><?=$entrada['categoria'].' | '.$entrada['fecha']?></span>
                     <p>
                     <!-- Limitamos el nº de caracteres que se mostrarán en index.php antes de pinchar sobre cada entrada -->
                     <?=substr($entrada['descripcion'], 0, 200)?>
                     </p>
-              
+                </a>
             </article>
             <?php
                     endwhile;
                 endif;    
             ?>
 
-            <div id="ver_todas">
-                <a href="entradas.php">Ver todas las entradas</a>
-            </div>
         </div><!--FIN DE PRINCIPAL-->
+        <?php require_once 'includes/footer.php';?>

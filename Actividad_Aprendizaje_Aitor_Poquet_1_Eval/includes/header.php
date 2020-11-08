@@ -29,13 +29,13 @@ require_once 'includes/connection.php';
             <a href="index.php">Inicio</a>
             </li>
             <li>
-            <a href="">Crear tema</a>
+            <a href="create_topic.php">Crear tema</a>
             </li>
             <li>
-            <a href="">Crear categoría</a>
+            <a href="create_category.php">Crear categoría</a>
             </li>    
             <li>
-            <a href="">Ver categorías</a>
+            <a href="categories.php">Ver categorías</a>
             </li>   
     </ul>
     </nav> 

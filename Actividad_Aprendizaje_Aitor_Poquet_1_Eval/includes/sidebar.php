@@ -4,11 +4,17 @@
 <aside id="sidebar">
 <?php if(isset($_SESSION['user'])): ?>
         <div id="loged_user" class="block-aside">
-            <h3>Bienvenido, <?=$_SESSION['user']['u_name'];?></h3>
+            <h3>¡Hola <strong><?=$_SESSION['user']['u_name'];?></strong>!</h3>
             <!-- <?php var_dump($_SESSION['user']); ?> -->
+
+            <div class="user_options">
+                <a href="my_profile.php" class="button button_green">Mis datos</a>
+                <a href="logout.php" class="button button_red">Cerrar sesión</a>
+            </div>        
+        </div>
 <?php endif; ?>
 
-<?php if(!isset($_SESSION['PONER SESION AQUI'])): ?>
+<?php if(!isset($_SESSION['user'])): ?>
     <div id="login" class="block-aside">
         <h3>Identifícate</h3>
         <?php if(isset($_SESSION['error_login'])): ?>
@@ -67,5 +73,5 @@
         <!-- Eliminamos los mensajes de error al recargar la página o reenviar el form -->
         <?php deleteErrors(); ?>
     </div>
-    <?php endif?>
+        <?php endif; ?>
 </aside>
