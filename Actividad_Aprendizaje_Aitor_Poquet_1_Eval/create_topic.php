@@ -1,28 +1,32 @@
 <?php 
 include_once 'includes/header.php';
 include_once 'includes/sidebar.php';
+require_once 'includes/functions.php';
+
+?>
+<?php 
+$current_category = getCategory($db, $_GET['id']);
+
 ?>
 <!-- MAIN -->
 <div id="main">
     <h1>Crear tema</h1>
     <p>
-        Crea un nuevo tema para debatir con la comunidad
+        Crea tu nueva entrada
     </p>
     <br />
 
-    <form action="save_topic.php" method="POST">
+    <form action="save_topic.php?id=<?=$current_category['cate_id']?>" method="POST">
         <label for="title">Título</label>
         <input type="text" name="title" />
+        <?php echo isset($_SESSION['input_errors']) ? showErrors($_SESSION['input_errors'], 'title') : ''; ?>
+
 
         <label for="content">Contenido</label>
         <textarea name="content" style="margin: 0px; width: 775px; height: 172px; resize: none;"></textarea>
+        <?php echo isset($_SESSION['input_errors']) ? showErrors($_SESSION['input_errors'], 'content') : ''; ?>
 
-        <label for="category">Categoría</label>
-            <select name="category">
-                <option>Value1</option>
-                <option>Value2</option>
-                <option>Value3</option>
-            </select>
+        
         <input type="submit" value="Crear" />
 
     </form>

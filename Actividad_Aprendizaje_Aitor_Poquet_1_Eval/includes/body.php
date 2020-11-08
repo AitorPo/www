@@ -2,38 +2,26 @@
 
 <h1>Últimas entradas</h1>
 
+<?php $topics = getTopics($db, null, 3);
+
+if(!empty($topics)): 
+    foreach($topics as $topic):
+?>
+
 <article class="posts">
 <a href="">
+        <h2><?=$topic['to_title']?></h2>
+        <span class="date"><?=$topic['to_date']?> | <?=$topic['u_name']?></span>
 
 </a>
-</article>
 
-<h2>Titulo</h2>
-<span class="date">time()</span>
 <p>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, placeat sit! Maxime dolorum accusamus eaque nulla quod eum eveniet fugiat explicabo nemo! Quis eius porro alias et. Esse, provident praesentium.
-</p>
-<br />
-<h2>Titulo</h2>
-<span class="date">time()</span>
-<p>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, placeat sit! Maxime dolorum accusamus eaque nulla quod eum eveniet fugiat explicabo nemo! Quis eius porro alias et. Esse, provident praesentium.
-</p>
-<br />
-<h2>Titulo</h2>
-<span class="date">time()</span>
-<p>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, placeat sit! Maxime dolorum accusamus eaque nulla quod eum eveniet fugiat explicabo nemo! Quis eius porro alias et. Esse, provident praesentium.
-</p>
-<br />
-<h2>Titulo</h2>
-<span class="date">time()</span>
-<p>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, placeat sit! Maxime dolorum accusamus eaque nulla quod eum eveniet fugiat explicabo nemo! Quis eius porro alias et. Esse, provident praesentium.
-</p>
-<br />
-    <div id="see_all">
-        <a href="">Ver todas las publicaciones</a>
-    </div>
+                <?=$topic['to_content'],0,200?>
+            </p>
+</article>
+<?php 
+    endforeach;
+endif;
+?>
 <!-- END OF MAIN -->
 </div>

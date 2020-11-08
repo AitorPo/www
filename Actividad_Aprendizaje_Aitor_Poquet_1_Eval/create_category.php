@@ -2,6 +2,7 @@
 include_once 'includes/header.php';
 include_once 'includes/sidebar.php';
 require_once 'includes/functions.php';
+require_once 'includes/redirect.php';
 ?>
 
 <!-- MAIN -->

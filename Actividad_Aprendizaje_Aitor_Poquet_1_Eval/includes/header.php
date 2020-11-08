@@ -1,5 +1,6 @@
 <?php 
 require_once 'includes/connection.php';
+require_once 'includes/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +21,8 @@ require_once 'includes/connection.php';
             </a>
         </div>
 
-    <div class="clearfix"></div>
+    <div class="clearfix">
+    </div>
 
      <!-- MENU -->
      <nav id="menu">
@@ -28,9 +30,9 @@ require_once 'includes/connection.php';
             <li>
             <a href="index.php">Inicio</a>
             </li>
-            <li>
+            <!-- <li>
             <a href="create_topic.php">Crear tema</a>
-            </li>
+            </li> -->
             <li>
             <a href="create_category.php">Crear categoría</a>
             </li>    

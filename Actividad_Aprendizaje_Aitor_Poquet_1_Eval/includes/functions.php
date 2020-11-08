@@ -41,7 +41,7 @@ function deleteErrors(){
 
 }
 
-function getCategory($db){
+function getCategories($db){
     $sql = "SELECT * FROM categories ORDER BY cate_id ASC";
     $stmt = $db->prepare($sql);
     $stmt -> execute();
@@ -49,6 +49,75 @@ function getCategory($db){
     $categories = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
     return $categories;
+}
+
+function getCategory($db, $id){
+    $sql = "SELECT * FROM categories WHERE cate_id = :id";
+    $stmt = $db->prepare($sql);    
+    $stmt -> bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt -> execute();
+
+    $category = $stmt -> fetch(PDO::FETCH_ASSOC);
+    
+    return $category;
+}
+
+function getTopics($db, $category_id = null, $limit = null){
+    
+   
+    if(!empty($category_id)){
+        $sql = "SELECT t.*, c.cate_name AS 'categoria', u.u_name FROM topics t
+        INNER JOIN categories c
+        ON t.cate_id = c.cate_id 
+        INNER JOIN users u
+        ON u.u_id = t.u_id WHERE t.cate_id = :category_id";
+   
+   $stmt = $db->prepare($sql);
+   $stmt -> bindParam(':category_id', $category_id, PDO::PARAM_INT);
+   $stmt -> execute();
+   $topics = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+   
+   return $topics;    
+}elseif(!empty($limit)){
+        $sql = "SELECT t.*, c.cate_name AS 'categoria', u.u_name FROM topics t
+        INNER JOIN categories c
+        ON t.cate_id = c.cate_id 
+        INNER JOIN users u
+        ON u.u_id = t.u_id LIMIT :limit";
+   
+   $stmt = $db->prepare($sql);
+   $stmt -> bindParam(':limit', $limit, PDO::PARAM_INT);
+   $stmt -> execute();
+   $topics = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+   
+   return $topics;    
+    }else{
+        $sql = "SELECT t.*, c.cate_name , u.u_name FROM topics t
+        INNER JOIN categories c
+        ON t.cate_id = c.cate_id 
+        INNER JOIN users u
+        ON u.u_id = t.u_id";
+
+        $stmt = $db->prepare($sql);
+   $stmt -> execute();
+   $topics = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+   
+   return $topics;    
+    }
+}
+
+function getTopic($db, $topic_id){
+    $sql = "SELECT t.*, c.cate_name,
+    u.u_name FROM topics t
+    INNER JOIN categories c ON t.cate_id = c.cate_id 
+    INNER JOIN users u ON t.u_id = u.u_id 
+    WHERE t.to_id = :id";
+
+    $stmt = $db -> prepare($sql);
+    $stmt -> bindParam(':id', $topic_id, PDO::PARAM_INT);
+    $stmt -> execute();
+    $topic = $stmt -> fetch(PDO::FETCH_ASSOC);
+    return $topic;
 }
 
 

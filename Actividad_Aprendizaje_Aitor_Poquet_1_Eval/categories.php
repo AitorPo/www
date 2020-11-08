@@ -9,12 +9,14 @@ require_once 'includes/functions.php';
 
     <h1>Todas las categorías</h1>
     <?php 
-        $categories = getCategory($db);
+        $categories = getCategories($db);
         if(!empty($categories)): 
             foreach($categories as $category):
     ?>
         <div id="category">
+        <a href="category.php?id=<?=$category['cate_id']?>">
             <h2><?=$category['cate_name']?></h2>
+        </a>
             <p>
                 <?=$category['cate_desc']?>
             </p>
