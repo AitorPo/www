@@ -15,7 +15,7 @@
 <?php if(isset($_SESSION['user']) && $_SESSION['user']['u_id'] == $current_topic['u_id']): ?>
                 
                     <a href="edit_topic.php?id=<?=$current_topic['to_id']?>">Editar entrada</a> 
-                
+
             <?php endif; ?>
 
             <?php 
@@ -29,14 +29,13 @@ foreach($comments as $comment):?>
 
 </p>
 <?php endforeach; ?>
-<?php if(isset($_SESSION['user']) && $_SESSION['user']['u_id'] != $current_topic['u_id']) :?>
-    <a href="create_comment.php?id=<?=$current_topic['to_id']?>">Añadir comentario</a>
+<?php if(isset($_SESSION['user']) && $_SESSION['user']['u_id'] != $current_topic['u_id'] ||
+(isset($_SESSION['user']) && $_SESSION['user']['u_id'] == $current_topic['u_id'])): ?>
+
+<form action="" method="POST">
+<label for="name">NAME</label>
+<input type="text" name="name">
+</form>
 <?php endif; ?>    
     </div>
 </div>
-
-
-
-
-
-<?php require_once 'includes/footer.php';?>

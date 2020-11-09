@@ -120,6 +120,20 @@ function getTopic($db, $topic_id){
     return $topic;
 }
 
+function getComments($db, $topic_id){
+    $sql = "SELECT co.*, t.to_title,
+    u.u_name FROM comments co
+    INNER JOIN topics t ON co.to_id = t.to_id
+    INNER JOIN users u ON co.u_id = u.u_id
+    WHERE t.to_id = :id";
+
+    $stmt = $db -> prepare($sql);
+    $stmt -> bindParam(':id', $topic_id, PDO::PARAM_INT);
+    $stmt -> execute();
+    $comments = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
+}
+
 
 //funcion para enviar el email de registro de forma automática e inmediata
 function send_Mail($to, $username, $from, $subject, $body){

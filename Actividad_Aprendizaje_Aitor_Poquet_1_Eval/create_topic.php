@@ -48,7 +48,7 @@ $current_category = getCategory($db, $_GET['id']);
                 ?>
                 <!-- Listamos cada categoría en un option del select -->
                 <option>
-                <?=$category['cate_name']?>
+                <?=$['cate_name']?>
                 </option>
                 <?php endforeach; ?>
                </select>
