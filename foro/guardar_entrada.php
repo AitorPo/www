@@ -32,14 +32,14 @@
         }
         if(count($errores) == 0){
             if(isset($_GET['editar'])){
-            $entrada_id = $_GET['editar']; 
-            $usuario_id = $_SESSION['usuario']['id'];   
-            $sql = $db->prepare ("UPDATE entradas SET titulo = ?, descripcion= ?, categoria_id = ? 
-            WHERE id = ? AND usuario_id = ?");
-            $sql->bind_param('ssiii', $titulo, $descripcion, $categoria, $entrada_id, $usuario_id);
+                $entrada_id = $_GET['editar']; 
+                $usuario_id = $_SESSION['usuario']['id'];   
+                $sql = $db->prepare ("UPDATE entradas SET titulo = ?, descripcion= ?, categoria_id = ? 
+                WHERE id = ? AND usuario_id = ?");
+                $sql->bind_param('ssiii', $titulo, $descripcion, $categoria, $entrada_id, $usuario_id);
             }else{
-            $sql = $db->prepare ("INSERT INTO entradas VALUES (null,?,?,?,?, CURDATE());");
-            $sql->bind_param('iiss', $usuario, $categoria, $titulo,$descripcion);
+                $sql = $db->prepare ("INSERT INTO entradas VALUES (null,?,?,?,?, CURDATE());");
+                $sql->bind_param('iiss', $usuario, $categoria, $titulo,$descripcion);
             }
             // var_dump($sql);
             // die();

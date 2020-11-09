@@ -23,12 +23,15 @@ $current_category = getCategory($db, $_GET['id']);
             <span class="date"><?=$topic['to_date']?> | <?=$topic['u_name']?></span>
         </a>
             <p>
-                <?=$topic['to_content'],0,200?>
+                <?=substr($topic['to_content'],0,200)?>
             </p>
         </div>
         <?php      
             endforeach;
-     endif;?>
+        else:?>
+
+<div class="alert alert_error">NO hay entradas</div>
+     <?php endif;?>
     
                
                     <a href="create_topic.php?id=<?=$current_category['cate_id']?>">Crear entrada</a> 

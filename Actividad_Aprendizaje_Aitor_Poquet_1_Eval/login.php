@@ -11,7 +11,7 @@ if(isset($_POST)){
         $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt -> execute();
 
-        $user = $stmt -> fetch();
+        $user = $stmt -> fetch(PDO::FETCH_ASSOC);
         var_dump($user);
       
         $verify = password_verify($password, $user['u_password']);

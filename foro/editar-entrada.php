@@ -16,7 +16,7 @@
     <br />
     <form action="guardar_entrada.php?editar=<?=$entrada_actual['id']?>" method="POST">
         <label for="titulo">Título:  </label>
-        <input type="text" name="titulo" value="<?=$entrada_actual['titulo']?>">
+        <input type="text" name="titulo" value="<?=$entrada_actual['titulo']?>" />
         <!-- Mostramos los errores -->
         <?php echo isset($_SESSION['errores_entrada']) ? mostrarError($_SESSION['errores_entrada'], 'titulo') : ''; ?>
 

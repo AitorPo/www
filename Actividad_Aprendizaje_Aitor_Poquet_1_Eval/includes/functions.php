@@ -70,7 +70,7 @@ function getTopics($db, $category_id = null, $limit = null){
         INNER JOIN categories c
         ON t.cate_id = c.cate_id 
         INNER JOIN users u
-        ON u.u_id = t.u_id WHERE t.cate_id = :category_id";
+        ON u.u_id = t.u_id WHERE t.cate_id = :category_id ORDER BY t.to_date DESC";
    
    $stmt = $db->prepare($sql);
    $stmt -> bindParam(':category_id', $category_id, PDO::PARAM_INT);
@@ -83,7 +83,7 @@ function getTopics($db, $category_id = null, $limit = null){
         INNER JOIN categories c
         ON t.cate_id = c.cate_id 
         INNER JOIN users u
-        ON u.u_id = t.u_id LIMIT :limit";
+        ON u.u_id = t.u_id ORDER BY t.to_date DESC LIMIT :limit ";
    
    $stmt = $db->prepare($sql);
    $stmt -> bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -96,7 +96,7 @@ function getTopics($db, $category_id = null, $limit = null){
         INNER JOIN categories c
         ON t.cate_id = c.cate_id 
         INNER JOIN users u
-        ON u.u_id = t.u_id";
+        ON u.u_id = t.u_id ORDER BY t.to_date DESC";
 
         $stmt = $db->prepare($sql);
    $stmt -> execute();

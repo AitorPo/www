@@ -2,7 +2,7 @@
 
 <h1>Últimas entradas</h1>
 
-<?php $topics = getTopics($db, null, 3);
+<?php $topics = getTopics($db, null, 5);
 
 if(!empty($topics)): 
     foreach($topics as $topic):
@@ -16,7 +16,7 @@ if(!empty($topics)):
 </a>
 
 <p>
-                <?=$topic['to_content'],0,200?>
+                <?=substr($topic['to_content'],0,200)?>
             </p>
 </article>
 <?php 
