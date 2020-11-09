@@ -30,12 +30,14 @@ require_once 'includes/functions.php';
             <li>
             <a href="index.php">Inicio</a>
             </li>
-            <!-- <li>
+            <?php if(isset($_SESSION['user'])):?>
+            <li>
             <a href="create_topic.php">Crear tema</a>
-            </li> -->
+            </li>
             <li>
             <a href="create_category.php">Crear categoría</a>
-            </li>    
+            </li>   
+            <?php endif; ?> 
             <li>
             <a href="categories.php">Ver categorías</a>
             </li>   

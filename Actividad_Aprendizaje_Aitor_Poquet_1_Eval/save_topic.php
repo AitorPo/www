@@ -18,7 +18,7 @@ if(empty($title)){
 //
 #nos aparece un espacio en blanco en el textarea (no se porque) por eso hacemos trim() 
 #para eliminarlo y que funciona el programa correctamente
-trim($content);
+
 //
 if(empty($content)){
     $errors['content'] = 'El contenido NO es válido';

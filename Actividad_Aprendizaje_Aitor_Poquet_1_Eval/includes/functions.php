@@ -51,7 +51,7 @@ function getCategories($db){
     return $categories;
 }
 
-function getCategory($db, $id){
+function getCategory($db, $id = null){
     $sql = "SELECT * FROM categories WHERE cate_id = :id";
     $stmt = $db->prepare($sql);    
     $stmt -> bindParam(':id', $id, PDO::PARAM_INT);

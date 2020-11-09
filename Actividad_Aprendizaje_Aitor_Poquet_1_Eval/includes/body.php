@@ -9,7 +9,7 @@ if(!empty($topics)):
 ?>
 
 <article class="posts">
-<a href="">
+<a href="topic.php?id=<?=$topic['to_id']?>">
         <h2><?=$topic['to_title']?></h2>
         <span class="date"><?=$topic['to_date']?> | <?=$topic['u_name']?></span>
 

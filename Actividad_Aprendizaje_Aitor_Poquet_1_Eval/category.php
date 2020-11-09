@@ -30,12 +30,12 @@ $current_category = getCategory($db, $_GET['id']);
             endforeach;
         else:?>
 
-<div class="alert alert_error">NO hay entradas</div>
+<div class="alert alert-error">NO hay entradas</div>
      <?php endif;?>
     
-               
+                <?php if(isset($_SESSION['user'])): ?>
                     <a href="create_topic.php?id=<?=$current_category['cate_id']?>">Crear entrada</a> 
-                
+                <?php endif;?>
             
 </div><!--FIN DE PRINCIPAL-->
         <?php require_once 'includes/footer.php';?>
