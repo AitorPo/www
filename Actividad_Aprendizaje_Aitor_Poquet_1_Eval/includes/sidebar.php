@@ -9,7 +9,9 @@
 
             <div class="user_options">
                 <a href="my_profile.php" class="button button_green">Mis datos</a>
+                <a href="my_topics.php" class="button button_red">Mis entradas</a>
                 <a href="logout.php" class="button button_red">Cerrar sesión</a>
+                
             </div>        
         </div>
 <?php endif; ?>

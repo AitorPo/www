@@ -10,6 +10,14 @@ body{
     background: url("../images/cubes.png");
 }
 
+a{
+    color: orange;
+}
+a:hover{
+    color: green;
+}
+
+
 /* Float cleaner */
 .clearfix{
     clear: both;

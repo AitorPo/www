@@ -11,9 +11,11 @@ if(!empty($topics)):
 <article class="posts">
 <a href="topic.php?id=<?=$topic['to_id']?>">
         <h2><?=$topic['to_title']?></h2>
+</a>
+<a href="category.php?id=<?=$topic['cate_id']?>"><h4><?=$topic['cate_name']?></h4></a>
         <span class="date"><?=$topic['to_date']?> | <?=$topic['u_name']?></span>
 
-</a>
+
 
 <p>
                 <?=substr($topic['to_content'],0,200)?>

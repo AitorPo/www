@@ -11,7 +11,10 @@ require 'includes/PHPMailer/src/Exception.php';
 require 'includes/PHPMailer/src/PHPMailer.php';
 require 'includes/PHPMailer/src/SMTP.php';
 
-
+/*mostramos los errores que se generen pasando dos parametros
+*$errors = array donde almacenaremos los errores que surjan durante las sesiones
+*$field = campo, generalmente del input html, sobre el que se produce el error
+*/
 function showErrors($errors, $field){
     $alert = '';
     if(isset($errors[$field]) && !empty($field)){
@@ -62,11 +65,10 @@ function getCategory($db, $id = null){
     return $category;
 }
 
-function getTopics($db, $category_id = null, $limit = null){
-    
-   
+function getTopics($db, $category_id = null, $limit = null, $user_id = null){
+       
     if(!empty($category_id)){
-        $sql = "SELECT t.*, c.cate_name AS 'categoria', u.u_name FROM topics t
+        $sql = "SELECT t.*, c.cate_name, u.u_name FROM topics t
         INNER JOIN categories c
         ON t.cate_id = c.cate_id 
         INNER JOIN users u
@@ -79,7 +81,7 @@ function getTopics($db, $category_id = null, $limit = null){
    
    return $topics;    
 }elseif(!empty($limit)){
-        $sql = "SELECT t.*, c.cate_name AS 'categoria', u.u_name FROM topics t
+        $sql = "SELECT t.*, c.cate_name, u.u_name FROM topics t
         INNER JOIN categories c
         ON t.cate_id = c.cate_id 
         INNER JOIN users u
@@ -130,6 +132,7 @@ function getComments($db, $topic_id){
     $stmt = $db -> prepare($sql);
     $stmt -> bindParam(':id', $topic_id, PDO::PARAM_INT);
     $stmt -> execute();
+    //recogemos los datos en un array asociativo
     $comments = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     return $comments;
 }
@@ -140,7 +143,7 @@ function send_Mail($to, $username, $from, $subject, $body){
     // Al instanciar y parametrizar a true permitimos que lance excepciones
     $mail = new PHPMailer(true);
     # 'contraseña_real_de_la_cuenta_de_envio'
-    $password = 'Ai180612';
+    $password = 'pruebaphp';
     try {
         //Server settings
         $mail->SMTPDebug = 0;                      // Activamos mensajes de debug

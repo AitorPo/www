@@ -48,11 +48,10 @@ $current_category = getCategory($db, $_GET['id']);
                 ?>
                 <!-- Listamos cada categoría en un option del select -->
                 <option>
-                <?=$['cate_name']?>
+                <?=$category['cate_name']?>
                 </option>
                 <?php endforeach; ?>
                </select>
-                    
     <?php endif; ?>
         
         <input type="submit" value="Crear" />

@@ -18,7 +18,7 @@ if(isset($_POST)){
     $email = $_POST['email'];
 
     //variables para PHPMailer
-   $from = 'aitorpoquetginestar@gmail.com';
+   $from = 'aitor2dam@gmail.com';
    $subject = 'Actividad de Aprendizaje de la 1ª evaluación de Aitor Poquet Ginestar';
    $body = 'Bienvenid@ '.$name.'. Te has registrado correctamente';
        
@@ -97,6 +97,7 @@ if(isset($_POST)){
             $sql_insert_user = "INSERT INTO users (u_name, u_password, u_email)VALUES(:name, :password, :email)";
             $stmt = $db->prepare($sql_insert_user);
 
+            //si se realiza en insert, es decir, si execute = true se insertarán los datos en la BD y se enviará el mail
             if($stmt -> execute(['name' => $name, 'password' => $bcrypted_password, 'email' => $email])){   
             
                 $_SESSION['completed'] = 'El registro se ha completado satisfactoriamente';

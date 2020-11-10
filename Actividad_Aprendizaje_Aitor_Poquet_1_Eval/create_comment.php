@@ -3,6 +3,7 @@
     require_once 'includes/sidebar.php';
     require_once 'includes/header.php';?>
 <?php $current_topic = getTopic($db, $_GET['id']);
+
     ?>
 
 <div id="main">
@@ -32,9 +33,12 @@ foreach($comments as $comment):?>
 <?php if(isset($_SESSION['user']) && $_SESSION['user']['u_id'] != $current_topic['u_id'] ||
 (isset($_SESSION['user']) && $_SESSION['user']['u_id'] == $current_topic['u_id'])): ?>
 
-<form action="" method="POST">
-<label for="name">NAME</label>
-<input type="text" name="name">
+<form action="save_comment.php?id=<?=$current_topic['to_id']?>" method="POST">
+<br />
+<label for="content">¿Qué se te pasa por la cabeza?</label>
+<input type="text" name="content" placeholder="Escribe quí tu comentario...">
+
+<input type="submit" value="Enviar" />
 </form>
 <?php endif; ?>    
     </div>
