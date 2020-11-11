@@ -11,6 +11,10 @@ require 'includes/PHPMailer/src/Exception.php';
 require 'includes/PHPMailer/src/PHPMailer.php';
 require 'includes/PHPMailer/src/SMTP.php';
 
+//valor de los roles de la BD
+const TOPIC_ADMIN = 2; //admin para entradas 
+const DB_ADMIN = 1; //admin total
+const USER = 0; //usuario convencional
 /*mostramos los errores que se generen pasando dos parametros
 *$errors = array donde almacenaremos los errores que surjan durante las sesiones
 *$field = campo, generalmente del input html, sobre el que se produce el error
@@ -135,6 +139,17 @@ function getComments($db, $topic_id){
     //recogemos los datos en un array asociativo
     $comments = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     return $comments;
+}
+
+//obtenemos el rol del usuario por id
+function getRol($db, $user_id){
+    $sql = "SELECT u_rol FROM users WHERE u_id = :id";
+    $stmt = $db-> prepare($sql);
+    $stmt -> bindParam(':id', $user_id, PDO::PARAM_INT);
+    $stmt -> execute();
+
+    $rol = $stmt -> fetch(PDO::FETCH_ASSOC);
+    var_dump($rol);
 }
 
 

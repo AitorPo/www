@@ -8,7 +8,10 @@
             <!-- <?php var_dump($_SESSION['user']); ?> -->
 
             <div class="user_options">
+                <!-- if para que los admin no puedan modificar sus datos desde la web -->
+                <?php if($_SESSION['user']['u_rol'] == USER):?>
                 <a href="my_profile.php" class="button button_green">Mis datos</a>
+                <?php endif;?>
                 <a href="my_topics.php" class="button button_red">Mis entradas</a>
                 <a href="logout.php" class="button button_red">Cerrar sesión</a>
                 

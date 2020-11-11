@@ -12,7 +12,7 @@
     <?=$current_topic['to_content']?>
 </p>
 
-<?php if(isset($_SESSION['user']) && $_SESSION['user']['u_id'] == $current_topic['u_id']): ?>
+<?php if(isset($_SESSION['user']) && $_SESSION['user']['u_id'] == $current_topic['u_id'] || isset($_SESSION['user']) && $_SESSION['user']['u_rol'] == DB_ADMIN): ?>
                 
                     <a href="edit_topic.php?id=<?=$current_topic['to_id']?>">Editar entrada</a> 
                     <br />
@@ -25,13 +25,17 @@
             <!-- link a crear comentario justo debajo del tema para evitar al maximo hacer scroll -->
     <a href="create_comment.php?id=<?=$current_topic['to_id']?>">Añadir comentario</a>
             <?php endif; ?>     
-<?php if($_SESSION['user']['u_rol'] > 0 && $_SESSION['user']['u_id'] != $current_topic['u_id']): 
+            <!-- php if para que elimine el error de no encontrar definido el index user para usuarios no logueados -->
+            <?php if(isset($_SESSION['user'])): ?>
+<?php if($_SESSION['user']['u_rol'] = TOPIC_ADMIN && $_SESSION['user']['u_id'] != $current_topic['u_id']): 
     //var_dump($current_topic['u_id'], $_SESSION['user']['u_id'])
     ?> 
     
         <a href="delete_topic.php?id=<?=$current_topic['to_id']?>">Eliminar entrada</a>
-<?php endif;?>
+<?php endif;
+endif;?>
 
+<h3>Comentarios</h3>
             <?php 
             $topic_id = $_GET['id'];
             $comments = getComments($db, $topic_id);
