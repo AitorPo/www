@@ -23,7 +23,6 @@ if(count($errors) == 0){
     $stmt -> execute();
     header('Location: topic.php?id='.$topic_id);
 }
-
 }else{
     $_SESSION['input_errors'] = $errors;
 }

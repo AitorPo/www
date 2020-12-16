@@ -1,7 +1,6 @@
 <?php include_once 'includes/functions.php';
     require_once 'includes/header.php';
     require_once 'includes/sidebar.php';
-    require_once 'includes/redirect.php';
     ?>
 <?php $current_topic = getTopic($db, $_GET['id']);
 

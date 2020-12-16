@@ -10,6 +10,7 @@ require_once 'includes/functions.php';
 //de lo contrario la pagina aparecera en blanco
 if(isset($_SESSION['user'])):
 $user_id = $_SESSION['user']['u_id'];
+//var_dump($user_id)
 ?>
 
 <div id="main">
@@ -19,7 +20,9 @@ $user_id = $_SESSION['user']['u_id'];
     $topics = getTopics($db,null, null, $user_id);
     if(!empty($topics)):
         foreach($topics as $topic):
+            //var_dump($topic)
     ?>
+    <?php if ($topic['u_id'] == $user_id || $_SESSION['user']['u_rol'] == DB_ADMIN || $_SESSION['user']['u_rol'] == TOPIC_ADMIN):?>
     <div id="topic">
     <br />
     <a href="topic.php?id=<?=$topic['to_id']?>">
@@ -32,6 +35,7 @@ $user_id = $_SESSION['user']['u_id'];
     </div>
 
 <?php 
+endif;
     endforeach;
 endif;
 endif;?>

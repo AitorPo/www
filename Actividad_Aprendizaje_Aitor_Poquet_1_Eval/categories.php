@@ -12,10 +12,11 @@ require_once 'includes/functions.php';
         $categories = getCategories($db);
         if(!empty($categories)): 
             foreach($categories as $category):
+                var_dump($category);
     ?>
         <div id="category">
         <a href="category.php?id=<?=$category['cate_id']?>">
-            <h2><?=$category['cate_name']?></h2>
+            <h2><?=$category['cate_name']?></h2><a href="delete_category.php?id=<?=$category['cate_id']?>">Eliminar categoría</a>
         </a>
             <p>
                 <?=$category['cate_desc']?>
