@@ -23,15 +23,16 @@ $user_id = $_SESSION['user']['u_id'];
             //var_dump($topic)
     ?>
     <?php if ($topic['u_id'] == $user_id || $_SESSION['user']['u_rol'] == DB_ADMIN || $_SESSION['user']['u_rol'] == TOPIC_ADMIN):?>
-    <div id="topic">
-    <br />
+    <div id="topic_container">
+    
     <a href="topic.php?id=<?=$topic['to_id']?>">
     
         <h3><strong><?=$topic['to_title']?></strong></h3>
+        
         </a>
-        <span class="date"><?=$topic['to_date']?></span>
-        <br /> 
-        <?=$topic['to_content']?>
+        <span class="date my_topics_date"><?=$topic['to_date']?></span>
+        
+        <p><?=$topic['to_content']?></p>
     </div>
 
 <?php 

@@ -13,22 +13,19 @@
     <?=$current_topic['to_content']?>
 </p>
 
-<?php if(isset($_SESSION['user']) && $_SESSION['user']['u_id'] == $current_topic['u_id']): ?>
-                
-                    <a href="edit_topic.php?id=<?=$current_topic['to_id']?>">Editar entrada</a> 
-
-            <?php endif; ?>
+<br />
+<h3>Comentarios</h3>
 
             <?php 
             $topic_id = $_GET['id'];
             $comments = getComments($db, $topic_id);
 foreach($comments as $comment):?>
-    <div class="comment">
-    <h1>Comentarios</h1>
+    <div class="comment create_comment">
 <p>
     <?=$comment['co_content']?>
 
 </p>
+    </div>
 <?php endforeach; ?>
 <?php if(isset($_SESSION['user']) && $_SESSION['user']['u_id'] != $current_topic['u_id'] ||
 (isset($_SESSION['user']) && $_SESSION['user']['u_id'] == $current_topic['u_id'])): ?>
@@ -38,7 +35,7 @@ foreach($comments as $comment):?>
 <label for="content">¿Qué se te pasa por la cabeza?</label>
 <input type="text" name="content" placeholder="Escribe quí tu comentario...">
 
-<input type="submit" value="Enviar" />
+<input class="btn_send"type="submit" value="Enviar" />
 </form>
 <?php endif; ?>    
     </div>

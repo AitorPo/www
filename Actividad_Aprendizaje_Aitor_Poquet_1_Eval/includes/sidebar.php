@@ -11,9 +11,9 @@
                 <!-- if para que los admin no puedan modificar sus datos desde la web -->
                 <?php if($_SESSION['user']['u_rol'] == USER):?>
                 <a href="my_profile.php" class="button button_green">Mis datos</a>
-                <a href="my_topics.php" class="button button_red">Mis entradas</a>
+                <a href="my_topics.php" class="button button_blue">Mis entradas</a>
                 <?php elseif($_SESSION['user']['u_rol'] == DB_ADMIN || $_SESSION['user']['u_rol'] == TOPIC_ADMIN): ?>
-                <a href="my_topics.php" class="button button_red">Todas las entradas</a>
+                <a href="my_topics.php" class="button button_blue">Todas las entradas</a>
                 <?php endif;?>
                 <a href="logout.php" class="button button_red">Cerrar sesión</a>
                 

@@ -24,9 +24,9 @@
 <?php  echo isset($_SESSION['input_errors']) ? showErrors($_SESSION['input_errors'], 'title') : '';?>
 
 <label for="content">Contenido:  </label>
-<textarea name="content" style="margin: 0px; width: 775px; height: 172px; resize: none"><?=$current_topic['to_content']?></textarea>
+<textarea name="content" style="margin: 0px; width: 100%; height: 172px; resize: none"><?=$current_topic['to_content']?></textarea>
 <?php echo isset($_SESSION['input_errors']) ? showErrors($_SESSION['input_errors'], 'content') : ''; ?>
-
+<br />
 <input type="submit" value="Actualizar" />
 </form>
 <?php deleteErrors();?>

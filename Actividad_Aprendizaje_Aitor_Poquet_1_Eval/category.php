@@ -25,6 +25,7 @@ $current_category = getCategory($db, $_GET['id']);
             <p>
                 <?=substr($topic['to_content'],0,200)?>
             </p>
+            <br/>
         </div>
         <?php      
             endforeach;
@@ -34,7 +35,7 @@ $current_category = getCategory($db, $_GET['id']);
      <?php endif;?>
     
                 <?php if(isset($_SESSION['user'])): ?>
-                    <a href="create_topic.php?id=<?=$current_category['cate_id']?>">Crear entrada</a> 
+                    <a href="create_topic.php?id=<?=$current_category['cate_id']?>" class="topic add">Crear entrada</a> 
                 <?php endif;?>
             
 </div><!--FIN DE PRINCIPAL-->

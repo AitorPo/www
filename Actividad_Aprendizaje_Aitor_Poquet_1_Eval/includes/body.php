@@ -1,6 +1,7 @@
 <div id="main">
 
 <h1>Últimas entradas</h1>
+<hr />
 
 <?php $topics = getTopics($db, null, 5);
 
@@ -12,7 +13,7 @@ if(!empty($topics)):
 <a href="topic.php?id=<?=$topic['to_id']?>">
         <h2><?=$topic['to_title']?></h2>
 </a>
-<a href="category.php?id=<?=$topic['cate_id']?>"><h4><?=$topic['cate_name']?></h4></a>
+<a href="category.php?id=<?=$topic['cate_id']?>"><h4 class="category"><?=$topic['cate_name']?></h4></a>
         <span class="date"><?=$topic['to_date']?> | <?=$topic['u_name']?></span>
 
 
