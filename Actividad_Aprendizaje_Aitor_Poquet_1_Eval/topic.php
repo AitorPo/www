@@ -17,6 +17,7 @@
 
 <?php if(isset($_SESSION['user'])): 
      //var_dump($current_topic['u_id'], $_SESSION['user']['u_id'])
+     // Gestión de botones
      ?>
             <?php if ($_SESSION['user']['u_id'] == $current_topic['u_id']):?>
                     <a href="edit_topic.php?id=<?=$current_topic['to_id']?>" class="topic edit">Editar entrada</a> 
@@ -62,15 +63,19 @@ foreach($comments as $comment):?>
 <div class="comment">
    <h5><?=$comment['u_name'];
    //var_dump($comment)?>
+   <?php if(isset($_SESSION['user'])):?>
    <?php if($_SESSION['user']['u_id'] == $comment['u_id'] || $_SESSION['user']['u_rol'] == TOPIC_ADMIN):
     //var_dump($_SESSION['user'])
     ?>
-                    <a href="delete_comment.php?id=<?=$current_topic['to_id']?>" class="topic delete">Eliminar comentario</a> </h5>
-   <?php endif; ?>
+                    <a href="delete_comment.php?id=<?=$current_topic['to_id']?>" class="topic delete">Eliminar comentario</a> 
+    </h5>
+   <?php
+endif;
+endif; ?>
                     <p class="comment_content">
     <?=$comment['co_content']?>
 
-</p>
+                    </p>
 </div>
 <?php endforeach; ?>
         <!-- link a crear comentario justo despues del ultimo comentario para evitar al maximo hacer scroll -->
@@ -84,4 +89,4 @@ foreach($comments as $comment):?>
     </div>
     </div>
 </div>
-        
+        <?php require_once 'includes/footer.php';?>

@@ -28,6 +28,8 @@ if(empty($content)){
 
 
 if(count($errors) == 0){
+    // var_dump($_GET);
+    // die();
     if(isset($_GET['edit'])){
         $topic_id = $_GET['edit'];
         $user_id = $_SESSION['user']['u_id'];

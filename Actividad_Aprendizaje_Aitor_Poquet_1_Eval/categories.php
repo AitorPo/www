@@ -3,7 +3,6 @@ require_once 'includes/functions.php';
 include_once 'includes/header.php';
 include_once 'includes/sidebar.php';
 require_once 'includes/functions.php';
-
 ?>
 <div id="main">
 

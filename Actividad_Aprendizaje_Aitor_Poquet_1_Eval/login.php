@@ -8,12 +8,12 @@ if(isset($_POST)){
 
         $sql_select = "SELECT * FROM users WHERE u_email = :email";
         $stmt = $db->prepare($sql_select);
-        $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt -> bindParam(':email', $email, PDO::PARAM_STR);
         $stmt -> execute();
-
+       
         $user = $stmt -> fetch(PDO::FETCH_ASSOC);
         var_dump($user);
-      
+        
         $verify = password_verify($password, $user['u_password']);
         var_dump($verify);
         
@@ -33,8 +33,5 @@ if(isset($_POST)){
         #mensaje de error
         $_SESSION['error_login'] = "Login incorrecto";
     }
-   
-    
-
 header('Location: index.php');
 ?>

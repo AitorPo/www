@@ -152,7 +152,6 @@ function getRol($db, $user_id){
     var_dump($rol);
 }
 
-
 //funcion para enviar el email de registro de forma automática e inmediata
 function send_Mail($to, $username, $from, $subject, $body){
     // Al instanciar y parametrizar a true permitimos que lance excepciones

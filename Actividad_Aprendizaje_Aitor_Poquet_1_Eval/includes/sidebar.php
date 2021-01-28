@@ -2,7 +2,10 @@
 <?php require_once 'includes/functions.php' ;?>
 <!-- BARRA LATERAL / SIDEBAR -->
 <aside id="sidebar">
+<?php var_dump($_SESSION); ?>
+
 <?php if(isset($_SESSION['user'])): ?>
+    <?php var_dump($_SESSION['user']); ?>
         <div id="loged_user" class="block-aside">
             <h3>¡Hola <strong><?=$_SESSION['user']['u_name'];?></strong>!</h3>
             <!-- <?php var_dump($_SESSION['user']); ?> -->
@@ -75,7 +78,6 @@
             <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'password') : ''; ?>
 
             <input type="submit" value="Enviar" />
-
         </form>
         <!-- Eliminamos los mensajes de error al recargar la página o reenviar el form -->
         <?php deleteErrors(); ?>

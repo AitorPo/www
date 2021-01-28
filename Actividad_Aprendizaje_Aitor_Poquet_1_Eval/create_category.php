@@ -14,9 +14,9 @@ require_once 'includes/functions.php';
     <?php echo isset($_SESSION['input_errors']) ? showErrors($_SESSION['input_errors'], 'category_name') : ''; ?>
 
     <label for="category_desc">Descripción de la categoría</label>
-    <textarea name="category_desc" style="margin: 0px; width: 775px; height: 172px; resize: none;" ></textarea>
+    <textarea name="category_desc" style="margin: 0px; width: 100%; height: 172px; resize: none;" ></textarea>
     <?php echo isset($_SESSION['input_errors']) ? showErrors($_SESSION['input_errors'], 'category_desc') : ''; ?>
-
+    <br />
     <input type="submit" name="submit" value="Crear" />
     </form>
     <?php deleteErrors();?>

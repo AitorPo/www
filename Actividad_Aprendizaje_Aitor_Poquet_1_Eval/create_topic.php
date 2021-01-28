@@ -19,10 +19,10 @@ $current_category = getCategory($db, $_GET['id']);
         Crea tu nueva entrada
     </p>
     <br />
-    <?php if(isset($_GET['id'])): ?>
-    <form action="save_topic.php?id=<?=$current_category['cate_id']?>" method="POST">
-    <?php else: ?>
-    <form action="save_topic.php" method="POST">
+    <?php if(isset($_GET['id'])): ?> <!-- $_GET['id'] se refiere al id de la categoría sobre la que se creará el tema -->
+    <form action="save_topic.php?id=<?=$current_category['cate_id']?>" method="POST"> <!-- Redirecciona a la página de creación de tema de esa categoría -->
+    <?php else: ?>  
+    <form action="save_topic.php" method="POST"> <!-- Permite crear tema fuera de cualquier categoría PERO permite seleccionar la categoría mediante un ComboBox -->
 
     <?php endif; ?>   
     
@@ -32,7 +32,7 @@ $current_category = getCategory($db, $_GET['id']);
 
 
         <label for="content">Contenido</label>
-        <textarea name="content" placeholder="Contenido de la entrada..." style="margin: 0px; width: 775px; height: 172px; resize: none"></textarea>
+        <textarea name="content" placeholder="Contenido de la entrada..." style="margin: 0px; width: 100%; height: 172px; resize: none"></textarea>
         <?php echo isset($_SESSION['input_errors']) ? showErrors($_SESSION['input_errors'], 'content') : ''; ?>
 
         <!-- Si no se accede a crear tema desde una categoría concreta
@@ -53,7 +53,7 @@ $current_category = getCategory($db, $_GET['id']);
                 <?php endforeach; ?>
                </select>
     <?php endif; ?>
-        
+        <br />
         <input type="submit" value="Crear" />
 
     </form>

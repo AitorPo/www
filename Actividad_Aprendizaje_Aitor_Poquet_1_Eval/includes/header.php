@@ -31,9 +31,9 @@ require_once 'includes/functions.php';
             <a href="index.php">Inicio</a>
             </li>
             <?php if(isset($_SESSION['user'])):?>
-            <!-- <li>
+            <li>
             <a href="create_topic.php">Crear tema</a>
-            </li> -->
+            </li> 
             <li>
             <a href="create_category.php">Crear categoría</a>
             </li>   
@@ -44,7 +44,5 @@ require_once 'includes/functions.php';
     </ul>
     </nav> 
     </header>  
-       
-
   <!-- CONTAINER (ends at footer.php)-->
   <div id="container">

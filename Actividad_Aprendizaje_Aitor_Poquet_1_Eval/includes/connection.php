@@ -18,7 +18,12 @@ if($db === false){
     die("ERROR: No se ha podido establecer conexión con la BD. ".$db -> connect_error);
 }
 //iniciamos sesión. También nos servirá para gestionar errores
+var_dump($_SESSION); //el valor es null/undefined porque aún no se ha iniciado ninguna sesión
 if(!isset($_SESSION)){
-    session_start();
+    //Se inicia el "concepto" de sesión
+    session_start(); 
+    // El valor de la sesión ['user'] se asigna en el fichero login
+    var_dump($_SESSION);
+    //die();
 }
 ?>

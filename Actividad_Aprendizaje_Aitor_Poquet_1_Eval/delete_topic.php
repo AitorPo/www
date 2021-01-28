@@ -4,10 +4,11 @@ require_once 'includes/connection.php';
 require_once 'includes/functions.php';
 
 $current_topic = getTopic($db, $_GET['id']);
-// var_dump($current_topic); 
+//var_dump($current_topic); die();
 if($_SESSION['user']['u_id'] == $current_topic['u_id']){
     $topic_id = $_GET['id'];
     $user_id = $_SESSION['user']['u_id'];
+    
     // var_dump($topic_id, $user_id, $_SESSION['user']); die();
     $sql_delete_topic = "DELETE FROM topics  
         WHERE to_id = :topic_id
@@ -26,7 +27,7 @@ if($_SESSION['user']['u_id'] == $current_topic['u_id']){
     $stmt -> execute();
 
     //si el usuario no tiene rol 0 sera admin. rol 2 es el admin de entradas.
-}elseif($_SESSION['user']['u_rol'] == 2){
+}elseif($_SESSION['user']['u_rol'] == TOPIC_ADMIN){
     $topic_id = $_GET['id'];
     
     
