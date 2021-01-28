@@ -4,7 +4,7 @@ require_once './includes/connection.php';
 
 if(isset($_POST)){
     $usuario = trim($_POST['usuario']);
-    $password = $_POST['password'];
+    $password = trim($_POST['password']);
 
         $sql_select = "SELECT * FROM operario WHERE nombre = :nombre";
         $stmt = $db->prepare($sql_select);

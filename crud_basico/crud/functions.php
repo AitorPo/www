@@ -23,6 +23,18 @@ function getCiudades($db){
     return $ciudades;
 }
 
+function getIdCiudad($db, $nombre){
+    $sql = "SELECT id_ciudad FROM ciudad WHERE nombre = :ciudad";
+    $stmt = $db->prepare($sql);    
+    $stmt -> bindParam(':ciudad', $nombre, PDO::PARAM_STR);
+    $stmt -> execute();
+
+    $id = $stmt -> fetch(PDO::FETCH_ASSOC);
+    
+    return $id;
+
+}
+
 function getParque($db, $nombre){
     $sql = "SELECT * FROM parque WHERE nombre = :nombre";
     $stmt = $db->prepare($sql);    

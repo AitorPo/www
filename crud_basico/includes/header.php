@@ -1,6 +1,6 @@
 <?php 
 require_once 'includes/connection.php';
-//require_once '../crud/functions.php';
+require_once 'errors.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ require_once 'includes/connection.php';
                 Crud básico de prueba
             </a>
         </div>
-
+        <?php if(isset($_SESSION['operario']) && $_SESSION['operario'] != null):?>
         <nav id="menu">
             <ul>
                 <li>
@@ -26,8 +26,16 @@ require_once 'includes/connection.php';
                 <li>
                     <a href="create_parque.php">Añadir</a>
                 </li>
+                <li>
+                    <a href="logout.php">Cerrar sesión</a>
+                </li>
             </ul>
         </nav>
+        
+        <?php else: return;?>    
+        <?php endif;
+        deleteErrors();
+        ?>
     </header>
     <!-- container ends at footer.php -->
     <div id="container">

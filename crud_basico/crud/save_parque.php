@@ -3,9 +3,10 @@ require_once '../includes/connection.php';
 require_once '../crud/functions.php';
 
 
-$nombre = $_POST['nombre'];
-$ciudad = $_POST['ciudad'];
+//die();
 
+//die();
+$nombre = $_POST['nombre'];
 
 $errors = array();
 
@@ -13,29 +14,24 @@ trim($nombre);
 if(empty($nombre)){
     $errors['nombre'] = 'El titulo NO es válido';
 }
+
 //
 #nos aparece un espacio en blanco en el textarea (no se porque) por eso hacemos trim() 
 #para eliminarlo y que funciona el programa correctamente
 
-if(empty($ciudad)){
-    $errors['ciudad'] = 'El contenido NO es válido';
-}
 
 if(count($errors) == 0){
     
-        $sql_ciudad = "SELECT id_ciudad FROM ciudad WHERE nombre = ?";
-        $stmt_ciudad = $db -> prepare($sql_ciudad);
-        $stmt_ciudad -> bindParam(1, $ciudad, PDO::PARAM_STR );
-        $stmt_ciudad -> execute();
-        $idCiudad = $stmt_ciudad -> fetch(PDO::FETCH_ASSOC);
-        // var_dump($idCiudad);
-        // die();
-        $sql_insert = "INSERT INTO parque (nombre, id_ciudad) VALUES(?,?)";
+    $ciudad = $_POST['ciudad'];
+    var_dump($ciudad);
+        
+$idCiudad = getIdCiudad($db, $ciudad);
+var_dump($idCiudad);
+         
+        $sql_insert = "INSERT INTO parque (nombre, id_ciudad) VALUES(:nombre, (SELECT id_ciudad FROM ciudad WHERE nombre = :ciudad))";
         $stmt = $db -> prepare($sql_insert);
-        $stmt -> bindParam(1, $nombre, PDO::PARAM_STR );
-        $stmt -> bindParam(2, $idCiudad, PDO::PARAM_INT );
-        
-        
+        $stmt -> bindParam(':nombre', $nombre, PDO::PARAM_STR );
+        $stmt -> bindParam(':ciudad', $ciudad, PDO::PARAM_STR );
         
         $stmt -> execute();
         header('Location:../parques.php');

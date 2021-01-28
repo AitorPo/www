@@ -17,7 +17,8 @@
 
     <div id="parque">
         <h2>Parque: <?=$parque['nombre']?> | Ciudad: <?=$parque['ciudad']?></h2>
-        <a href="./crud/delete_parque.php?nombre=<?=$parque['nombre']?>">Eliminar </a>
+        <a href="./crud/delete_parque.php?nombre=<?=$parque['nombre']?>" 
+        onclick="return confirm('¿Deseas eliminar?');">Eliminar </a>
         <a href="update_parque.php?nombre=<?=$parque['nombre']?>"> Actualizar</a>
     </div>
             
