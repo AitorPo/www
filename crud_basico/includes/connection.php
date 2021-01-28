@@ -5,10 +5,10 @@ $user = 'root';
 $password = '';
 $database = 'parques';
 
-try{
-    $db = new PDO("mysql:host=$host;dbname=$database",$user,$password);
-    //seteamos el modo de error de las excepciones de PDO
-    $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    try{
+        $db = new PDO("mysql:host=$host;dbname=$database",$user,$password);
+        //seteamos el modo de error de las excepciones de PDO
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }catch(PDOException $e){
         die("ERROR: No se ha podido conectar a la Base de datos " . $e->getMessage());
     }
@@ -22,7 +22,6 @@ try{
         //Se inicia el "concepto" de sesión
         session_start(); 
         // El valor de la sesión ['user'] se asigna en el fichero login
-        
         //die();
     }
 ?>

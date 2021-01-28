@@ -1,6 +1,4 @@
 <?php
-
-
 function getParques($db){
     $sql = "SELECT p.nombre AS 'nombre', c.nombre AS 'ciudad' FROM parque p 
     INNER JOIN ciudad c ON 

@@ -12,7 +12,8 @@
                 //die();
         if(!empty($parques)):
             foreach($parques as $parque):
-                //var_dump($parque);
+                var_dump($parque);
+                
     ?>
 
     <div id="parque">

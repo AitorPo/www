@@ -11,7 +11,7 @@
         </div>  
     </div>
 <?php endif;?>
-<?php if(!isset($_SESSION['operario']) || $_SESSION['operario']==null): ?>
+<?php if(!isset($_SESSION['operario']) || $_SESSION['operario'] == null): ?>
     <div id="login" class="block-aside">
         <h3>Identifícate</h3>
         <?php if(isset($_SESSION['error_login'])): ?>
@@ -19,7 +19,8 @@
                         <?=$_SESSION['error_login'];?>
                     </div>
                 <?php endif;?>
-    <?php endif;?>    
+    <?php endif;?>   
+    <?php if(!isset($_SESSION['operario'])): ?> 
         <form action="login.php" method="POST">
             <label for="usuario">Usuario</label>
             <input type="text" name="usuario" />
@@ -29,6 +30,7 @@
 
             <input type="submit" value="Enviar" />
         </form>
+        <?php endif;?>
     </div>
     </div>
     <?php 
