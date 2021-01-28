@@ -1,6 +1,6 @@
 <?php 
 require_once 'includes/connection.php';
-require_once 'includes/functions.php';
+//require_once '../crud/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +24,7 @@ require_once 'includes/functions.php';
                     <a href="parques.php">Ver parques</a>
                 </li>    
                 <li>
-                    <a href="add.php">Añadir</a>
-                </li>
-                <li>
-                    <a href="delete.php">Eliminar</a>
-                </li>
-                <li>
-                    <a href="update.php">Actualizar</a>
+                    <a href="create_parque.php">Añadir</a>
                 </li>
             </ul>
         </nav>

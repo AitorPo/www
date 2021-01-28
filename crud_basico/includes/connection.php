@@ -22,7 +22,7 @@ try{
         //Se inicia el "concepto" de sesión
         session_start(); 
         // El valor de la sesión ['user'] se asigna en el fichero login
-        //var_dump($_SESSION);
+        
         //die();
     }
 ?>
