@@ -1,25 +1,26 @@
 <?php 
 //siempre nos conectamos a la BD para poder operar con ella
-require_once 'includes/connection.php';
+require_once './includes/connection.php';
 
 if(isset($_POST)){
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
+    $usuario = trim($_POST['usuario']);
+    $password = ($_POST['password']);
 
-        $sql_select = "SELECT * FROM users WHERE u_email = :email";
+        $sql_select = "SELECT * FROM empleados WHERE usuario = :usuario";
         $stmt = $db->prepare($sql_select);
-        $stmt -> bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt -> bindParam(':usuario', $usuario, PDO::PARAM_STR);
         $stmt -> execute();
        
-        $user = $stmt -> fetch(PDO::FETCH_ASSOC);
-        var_dump($user);
+        $empleado = $stmt -> fetch(PDO::FETCH_ASSOC);
+        var_dump($empleado);
         
-        $verify = password_verify($password, $user['u_password']);
+        $verify = password_verify($password, $empleado['password']);
         var_dump($verify);
-        die();
+        
+        
         if($verify){
             # usar sesion para guardar datos del ususario logueado
-            $_SESSION['user'] = $user;
+            $_SESSION['empleado'] = $empleado;
             if(isset($_SESSION['error_login'])){
                 unset($_SESSION['error_login']);
             }
